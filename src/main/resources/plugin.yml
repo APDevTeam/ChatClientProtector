@@ -1,6 +1,6 @@
 name: ChatClientProtector
 version: "1.0-SNAPSHOT"
-author: Your Name
+author: KnownUnown
 main: tk.knownunown.ChatClientProtector.ChatClientProtector
 
 commands:
