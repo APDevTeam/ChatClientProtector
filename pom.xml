@@ -47,7 +47,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <configuration>
                     <tasks>
-                        <copy file="target/ChatClientProtector-1.0-SNAPSHOT.jar" todir="/Users/Aditya/Desktop/spigot/plugins"/>
+                        <copy file="target/ChatClientProtector-1.0-SNAPSHOT.jar" todir="/Users/apan/Spigot/plugins"/>
                     </tasks>
                 </configuration>
                 <executions>

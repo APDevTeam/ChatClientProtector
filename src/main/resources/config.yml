@@ -1,0 +1,4 @@
+message: "You have specified that you joined with a text only client. Abuse of this feature will result in a ban."
+location: [0, 0, 0]
+world: "world"
+delay: 5
