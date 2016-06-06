@@ -23,6 +23,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
 
     private static Location location;
     private static Integer delay;
+    private static Player[] confirmedNotVictims = new ArrayList<Player>();;
 
     @Override
     public void onEnable() {
@@ -49,6 +50,12 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
                 sender.sendMessage("You're already in chat only mode!");
                 return false;
             }
+            
+            if (confirmedNotVictims.contains((Player) sender)) {
+                sender.sendMessage("You have confirmed not being in chat only capacity, denied.");
+                return false;
+            }
+            
             sender.sendMessage(getConfig().getString("message"));
             sender.sendMessage("Teleportation will commence in " + delay + " seconds.");
 
@@ -79,6 +86,10 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     }
 
     public static boolean isVictim(Player player) {
+        if (confirmedNotVictims.contains(Player)) {
+            return false;
+        }
+        
         return victims.containsKey(player);
     }
 
@@ -86,9 +97,17 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     public void onPlayerMove(PlayerMoveEvent event){
         if(isVictim(event.getPlayer())){
             event.getPlayer().teleport(location);
+            confirmedNotVictims.add(event.getPlayer());
+        
+            removeVictim(event.getPlayer());
         }
     }
-
+`
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onPlayerJoin(PlayerJoinEvent event){
+        onCommand(event.getPlayer(), "chatonly");
+    }
+    
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerInteract(PlayerInteractEvent event){
         if(isVictim(event.getPlayer())){
@@ -118,6 +137,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event){
         if(victims.containsKey(event.getPlayer())) {
             removeVictim(event.getPlayer());
+            confirmedNotVictims.remove(event.getPlayer());
         }
     }
 
@@ -125,6 +145,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     public void onDisable() {
         for (Player victim : victims.keySet()){
             removeVictim(victim);
+            confirmedNotVictims.add(event.getPlayer());
         }
     }
 }
