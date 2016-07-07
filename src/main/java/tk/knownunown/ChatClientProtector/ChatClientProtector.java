@@ -107,7 +107,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event){
         //onCommand(event.getPlayer(), "chatonly");
-        event.getPlayer.chat("/chatonly");
+        event.getPlayer().chat("/chatonly");
     }
     
     @EventHandler(priority = EventPriority.HIGHEST)
