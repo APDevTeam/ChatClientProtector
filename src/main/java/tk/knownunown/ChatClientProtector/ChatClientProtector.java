@@ -87,7 +87,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     }
 
     public static boolean isVictim(Player player) {
-        if (confirmedNotVictims.contains(Player)) {
+        if (confirmedNotVictims.contains(player)) {
             return false;
         }
         
@@ -146,7 +146,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
     public void onDisable() {
         for (Player victim : victims.keySet()){
             removeVictim(victim);
-            confirmedNotVictims.add(event.getPlayer());
+            //confirmedNotVictims.add(event.getPlayer());
         }
     }
 }
