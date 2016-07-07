@@ -23,7 +23,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
 
     private static Location location;
     private static Integer delay;
-    private static Player[] confirmedNotVictims = new ArrayList<Player>();;
+    private static ArrayList<Player> confirmedNotVictims = new ArrayList<Player>();
 
     @Override
     public void onEnable() {
