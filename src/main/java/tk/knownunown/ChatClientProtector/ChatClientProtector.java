@@ -102,7 +102,7 @@ public class ChatClientProtector extends JavaPlugin implements Listener {
             removeVictim(event.getPlayer());
         }
     }
-`
+
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event){
         onCommand(event.getPlayer(), "chatonly");
